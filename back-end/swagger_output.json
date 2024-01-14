@@ -1,0 +1,966 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Carteira de vacinação",
+    "description": "API criada como requisito para conclusão do Hackathon",
+    "version": "1.0.0"
+  },
+  "host": "teste2-production.up.railway.app",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Raiz"
+        ],
+        "description": "boas-vindas.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/routerAdmPaciente/": {
+      "get": {
+        "tags": [
+          "ADM Pacientes"
+        ],
+        "description": "Rota voltada para consultas de pacientes.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ADM Pacientes"
+        ],
+        "description": "Rota voltada para criação de paciente.",
+        "parameters": [
+          {
+            "name": "admPaciente",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_paciente": {
+                  "type": "integer"
+                },
+                "nome": {
+                  "type": "string"
+                },
+                "data_nascimento": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "id_paciente",
+                "nome",
+                "data_nascimento"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerAdmPaciente/{id}": {
+      "get": {
+        "tags": [
+          "ADM Pacientes"
+        ],
+        "description": "Rota voltada para consulta de paciente individual.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ADM Pacientes"
+        ],
+        "description": "Rota voltada para edição de paciente.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "admPaciente",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_paciente": {
+                  "type": "integer"
+                },
+                "nome": {
+                  "type": "string"
+                },
+                "data_nascimento": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "id_paciente",
+                "nome",
+                "data_nascimento"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacina/": {
+      "get": {
+        "tags": [
+          "Consulta de Vacinas"
+        ],
+        "description": "Consulta todas vacinas",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacina/{id}": {
+      "get": {
+        "tags": [
+          "Consulta de Vacinas"
+        ],
+        "description": "Consulta de vacina individual",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaIdade/anoExato/{ano}": {
+      "get": {
+        "tags": [
+          "Vacina por Idade"
+        ],
+        "description": "Consulta vacina ano exato",
+        "parameters": [
+          {
+            "name": "ano",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaIdade/anoAte/{ano}": {
+      "get": {
+        "tags": [
+          "Vacina por Idade"
+        ],
+        "description": "Consulta vacina a ser tomada até o ano informado",
+        "parameters": [
+          {
+            "name": "ano",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaIdade/mesExato/{mes}": {
+      "get": {
+        "tags": [
+          "Vacina por Idade"
+        ],
+        "description": "Consulta vacina mês exato",
+        "parameters": [
+          {
+            "name": "mes",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaIdade/mesAte/{mes}": {
+      "get": {
+        "tags": [
+          "Vacina por Idade"
+        ],
+        "description": "Consulta vacina a ser tomada até o mês informado",
+        "parameters": [
+          {
+            "name": "mes",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaProtecao/{protecao}": {
+      "get": {
+        "tags": [
+          "Vacina por Proteção"
+        ],
+        "description": "Consulta vacina por proteção",
+        "parameters": [
+          {
+            "name": "protecao",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerVacinaAplicada/{id}": {
+      "get": {
+        "tags": [
+          "Vacina Aplicada"
+        ],
+        "description": "Consulta de vacina aplicada individualmente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerVacinaAplicada/": {
+      "post": {
+        "tags": [
+          "Vacina Aplicada"
+        ],
+        "description": "Cadastro de vacina aplicada",
+        "parameters": [
+          {
+            "name": "cadastraVacinaAplicada",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_paciente": {
+                  "type": "integer"
+                },
+                "id_vacina": {
+                  "type": "integer"
+                },
+                "data_aplicacao": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "id_paciente",
+                "id_vacina",
+                "data_aplicacao"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerVacinaAplicada/{id}/{id1}": {
+      "delete": {
+        "tags": [
+          "Vacina Aplicada"
+        ],
+        "description": "Deleta vacina aplicada",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id1",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaPaciente/tomada/{id}": {
+      "get": {
+        "tags": [
+          "Vacina por Paciente"
+        ],
+        "description": "Consulta vacina tomada por paciente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerConsultaVacinaPaciente/pendentes/{id}": {
+      "get": {
+        "tags": [
+          "Vacina por Paciente"
+        ],
+        "description": "Consulta vacina pendente por paciente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCampanhaVacinacao/campanhaData/": {
+      "get": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Pesquisa campanha por data",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCampanhaVacinacao/": {
+      "post": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Cadastra Campanha de vacinação",
+        "parameters": [
+          {
+            "name": "campanhaVacinacao",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_campanha": {
+                  "type": "integer"
+                },
+                "descricao": {
+                  "type": "string"
+                },
+                "data_inicio": {
+                  "type": "date"
+                },
+                "data_fim": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "id_campanha",
+                "descricao",
+                "data_inicio",
+                "data_fim"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCampanhaVacinacao/{id}/{id1}": {
+      "post": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Cadastra vacina em campanha",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id1",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campanhaVacinacao",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_campanha": {
+                  "type": "integer"
+                },
+                "vacina": {
+                  "type": "string"
+                },
+                "sigla_vacina": {
+                  "type": "string"
+                },
+                "doenca_protecao": {
+                  "type": "string"
+                },
+                "dose": {
+                  "type": "string"
+                },
+                "id_rede": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id_campanha",
+                "vacina",
+                "sigla_vacina",
+                "doenca_protecao",
+                "dose",
+                "id_rede"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCampanhaVacinacao/{id}": {
+      "put": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Edita campanha",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campahaVacinacao",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "descricao": {
+                  "type": "string"
+                },
+                "data_inicio": {
+                  "type": "date"
+                },
+                "data_fim": {
+                  "type": "date"
+                }
+              },
+              "required": [
+                "descricao",
+                "data_inicio",
+                "data_fim"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Deleta vacina campanha",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCampanhaVacinacao/campanhaProtecao/{pc}": {
+      "get": {
+        "tags": [
+          "Campanha de Vacinação"
+        ],
+        "description": "Consulta campanha proteção",
+        "parameters": [
+          {
+            "name": "pc",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/": {
+      "post": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Cadastra vacina",
+        "parameters": [
+          {
+            "name": "cadastroVacina",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id_vacina": {
+                  "type": "integer"
+                },
+                "nome_vacina": {
+                  "type": "string"
+                },
+                "sigla_vacina": {
+                  "type": "string"
+                },
+                "doenca_protecao": {
+                  "type": "string"
+                },
+                "dose": {
+                  "type": "string"
+                },
+                "id_rede": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id_vacina",
+                "nome_vacina",
+                "sigla_vacina",
+                "doenca_protecao",
+                "dose",
+                "id_rede"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/{id}": {
+      "put": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Edita vacina",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cadastroVacina",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "nome_vacina": {
+                  "type": "string"
+                },
+                "sigla_vacina": {
+                  "type": "string"
+                },
+                "doenca_protecao": {
+                  "type": "string"
+                },
+                "dose": {
+                  "type": "string"
+                },
+                "id_rede": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "nome_vacina",
+                "sigla_vacina",
+                "doenca_protecao",
+                "dose",
+                "id_rede"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/cadastroAplicacaoAno": {
+      "post": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Cadastra aplicação ano",
+        "parameters": [
+          {
+            "name": "cadastroVacina",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "id_vacina": {
+                  "type": "integer"
+                },
+                "qtd_ano_inicial": {
+                  "type": "integer"
+                },
+                "qtd_ano_final": {
+                  "type": "integer"
+                },
+                "desc_ano": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "id_vacina",
+                "qtd_ano_inicial",
+                "qtd_ano_final",
+                "desc_ano"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/revomerAplicacaoAno/{id}": {
+      "delete": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Deleta cadastro de aplicação ano",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/cadastroAplicacaoMes": {
+      "post": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Cadastra aplicação mês",
+        "parameters": [
+          {
+            "name": "cadastroVacina",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "id_vacina": {
+                  "type": "integer"
+                },
+                "qtd_meses_inicial": {
+                  "type": "integer"
+                },
+                "qtd_meses_final": {
+                  "type": "integer"
+                },
+                "desc_meses": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id_paciente",
+                "nome",
+                "data_nascimento"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/routerCadastroVacina/removerAplicacaoMes/{id}": {
+      "delete": {
+        "tags": [
+          "Cadastro de Vacina"
+        ],
+        "description": "Deleta aplicação mês",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
