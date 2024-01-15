@@ -61,5 +61,5 @@ Cada atividade foi meticulosamente planejada para assegurar uma solução abrang
 - Express
 - Postgres
 
- Para visualizar o resultado final, acesse: https://teste2-production.up.railway.app/swagger-ui/#/
+
 
